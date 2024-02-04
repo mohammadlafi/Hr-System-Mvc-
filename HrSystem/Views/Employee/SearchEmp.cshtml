@@ -1,0 +1,104 @@
+﻿@model VmEmpDeptCitCount
+@{
+    ViewData["Title"] = "SearchEmp";
+    Layout = "~/Views/Shared/_MneuPage.cshtml";
+}
+
+<form method="post" enctype="multipart/form-data">
+    <div class="row mt-3">
+        <div class="col-6">
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input name="txtFName" type="text" class="form-control" placeholder="Enter Employee Name">
+            </div>   
+            <div class="mb-3">
+                <input class="btn btn-primary" type="submit" value="Search Employee" asp-action="Searchemp">
+            </div>
+            <div class="mb-3">
+                <table class="table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                Profile Image
+                            </th>
+                            <th>
+                                First Name
+                            </th>
+                            <th>
+                                Last Name
+                            </th>
+                            <th>
+                                Phone
+                            </th>
+                            <th>
+                                Salary
+                            </th>  
+                            <th>
+                                Department
+                            </th>
+                            <th>
+                                Country
+                            </th> 
+                            <th>
+                                City
+                            </th> 
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @foreach (EmployeeDto item in Model.listempDto)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="~/@item.ImageName" style="width:100px">
+                                </td>
+                                <td>
+                                    @item.FName
+                                </td>
+                                <td>
+                                    @item.LName
+                                </td>
+                                 <td>
+                                    @item.phone
+                                </td>
+                                 <td>
+                                    @item.Salary
+                                </td>
+                                <td>
+                                    @item.department.Name
+                                </td> 
+                                <td>
+                                    @item.country.Name
+                                </td> 
+                                <td>
+                                    @item.city.Name
+                                </td>
+                                   <td>
+                                 
+
+                                    <!-- Modal -->
+                                
+                                    <input type="submit" value="Delete" asp-action="DeleteEmp"
+                                    asp-route-id="@item.id">
+
+                                    <input type="submit"  value="Edit"
+                                    asp-action="UpdateEmp1" asp-route-id="@item.id">
+                                   
+                                   
+                                   </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</form>
+

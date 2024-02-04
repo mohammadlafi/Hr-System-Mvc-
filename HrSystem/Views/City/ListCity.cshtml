@@ -1,0 +1,33 @@
+﻿@model List<CityDto>
+@{
+    ViewData["Title"] = "View";
+    Layout = "~/Views/Shared/_MneuPage.cshtml";
+}
+<div class="mb-3">
+    <h1>List City</h1>
+    </div>
+<div class="mb-3">
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+               
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (CityDto item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Name
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+

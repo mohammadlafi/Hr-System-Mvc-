@@ -1,0 +1,30 @@
+﻿@model DepartmentDto
+@{
+    ViewData["Title"] = "NewDepartment";
+    Layout = "~/Views/Shared/_MneuPage.cshtml";
+}
+
+<div class="mb-3">
+<h1>New Department</h1>
+</div>
+<form method="post">
+    <div class="row">
+        <div class="col-6">
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input asp-for="Name" type="text" class="form-control" placeholder="Enter Department Name">
+                    <span asp-validation-for="Name"></span>
+                </div>
+                </div>
+                <div class="col-6">
+                <div class="mb-3">
+                <label class="form-label">Description</label>
+                <input asp-for="Description" type="text" class="form-control" placeholder="Enter Description">
+                </div>
+        </div>
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="SaveDepartment" asp-action="SaveDepartment">
+        </div>
+    </div>
+
+</form>

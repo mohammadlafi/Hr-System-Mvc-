@@ -1,0 +1,27 @@
+﻿@model CityDto
+@{
+    ViewData["Title"] = "New Country";
+    Layout = "~/Views/Shared/_MneuPage.cshtml";
+}
+<div class="mb-3">
+    <h1>Country</h1>
+</div>
+<form method="post">
+<div class="row">
+    <div class="col-6">
+        <div class="mb-3">
+            <label  class="form-label">Name</label>
+            <input asp-for="Name" type="text" class="form-control" placeholder="Enter Country Name">
+        </div>
+            <div class="mb-3">
+                <input class="btn btn-primary" type="submit" value="SaveCountry" asp-action="SaveCountry">
+            </div>
+    </div>
+ 
+        
+    </div>
+
+</form>
+
+
+

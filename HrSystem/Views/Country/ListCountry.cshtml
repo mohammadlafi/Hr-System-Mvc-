@@ -1,0 +1,48 @@
+﻿@model HrSystem.helper.PaginatedList<CountryDto>
+@{
+    ViewData["Title"] = "ListCountry";
+    Layout = "~/Views/Shared/_MneuPage.cshtml";
+}
+
+<div class="mb-3">
+    <h1>List Country</h1>
+</div>
+<div class="mb-3">
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (CountryDto item in Model.Items)
+            {
+                <tr>
+                    <td>
+                        @item.Name
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="mb-3">
+   
+        <ul class="pagination pagination-sm">
+           @for (int i = 1; i <= Model.pagesCount; i++)
+            {
+            <li class="page-item" >
+               
+                <a class="page-link" asp-action="AllCountry" asp-asp-controller="Country" asp-route-PageNumber="@i">@i</a>
+                </li>
+            }
+          
+        
+        </ul>
+ 
+</div>
+

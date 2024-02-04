@@ -1,0 +1,56 @@
+﻿@model VmCountryCity
+@{
+    ViewData["Title"] = "NewCountry";
+    Layout = "~/Views/Shared/_MneuPage.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+   
+
+        $("#btnSave").click(function () {
+            var p = {
+                "cityDto.Name": $("#txtName").val(),
+                "cityDto.Country_Id": $("#Country_Id").val()
+            }
+            $.ajax({
+            type:'post',
+            'url': '/HrSystem/City/SaveCity',
+            data:p,
+            success: function () { 
+             alert("Ok")
+             },
+
+            error: function () { 
+             alert("erorr")
+             },
+
+            })
+
+            })
+        })
+</script>
+<div class="mb-3">
+    <h1>City</h1>
+</div>
+<form method="post">
+    <div class="row">
+        <div class="col-6">
+            <div class="mb-3">
+                <select class="form-select" id="Country_Id"  asp-items='new SelectList(Model.countryDtos,"id","Name")'>
+                    <option selected>Open this select menu</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input id="txtName" type="text" class="form-control" placeholder="Enter City Name">
+            </div>
+            <div class="mb-3">
+                <input class="btn btn-primary" id="btnSave" type="button" value="Save City">
+            </div>
+         
+        </div>
+    </div>
+
+</form>
+

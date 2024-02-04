@@ -1,0 +1,153 @@
+﻿@model VmEmpDeptCitCount
+@{
+    ViewData["Title"] = "NewEmployee";
+    Layout = "~/Views/Shared/_MneuPage.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+        $("#ddCountry").change(function () {
+          
+            $.ajax({
+                type: 'get',
+                'url': '/HrSystem/Employee/getCityBYCountry?Country_id=' +$("#ddCountry").val(),
+                success: function (data) {
+                    debugger
+                    $("#city_id option").remove()
+                    $.each(data, function (index,item) {
+                        $("#city_id").append("<option value="+item.id+"> "+item.name+"</option>")
+                    })
+                },
+                error: function () {
+                    alert("erorr")
+                },
+            })
+        })
+    })
+</script>
+<div class="mb-3">
+    <h1>Employee</h1>
+</div>
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-6">
+            <input type="hidden" readonly asp-for="employeeDto.id"/>
+
+            <div class="mb-3">
+                <label class="form-label">FirstName</label>
+                <input asp-for="employeeDto.FName" type="text" class="form-control" placeholder="Enter Your FirstName" >
+                <span asp-validation-for="employeeDto.FName"></span>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="mb-3">
+                <label class="form-label">Last Name</label>
+                <input asp-for="employeeDto.LName" type="text" class="form-control" placeholder="Enter Your LastName">
+                <span asp-validation-for="employeeDto.LName"></span>
+            </div>
+        </div>
+          <div class="col-6">
+            <div class="mb-3">
+                <label class="form-label">Phone</label>
+                <input asp-for="employeeDto.phone" type="text" class="form-control" placeholder="Enter Your Phone">
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="mb-3">
+                <label class="form-label">Chose Your Gender</label>
+                <select class="form-select" asp-for="employeeDto.gender">
+                    <option selected>Open this select menu</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                <span asp-validation-for="employeeDto.gender"></span> 
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="mb-3">
+                <label class="form-label">Chose Your Country</label>
+                <select class="form-select" asp-for="employeeDto.country_id" id="ddCountry" asp-items='new SelectList(Model.countryDtos,"id","Name")'>
+                    <option selected>Open this select menu</option>
+                   </select>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="mb-3">
+                <label class="form-label">Chose Your Country</label>
+                <select asp-for="employeeDto.city_id" class="form-select" id="city_id">
+                    <option selected>Open this select menu</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input asp-for="employeeDto.Email" type="email" class="form-control" placeholder="Enter Your Email">
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="mb-3">
+                <label class="form-label">Address</label>
+                <input asp-for="employeeDto.Address" type="text" class="form-control" placeholder="Enter Your Address">
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="mb-3">
+                <label class="form-label">Salary</label>
+                <input asp-for="employeeDto.Salary" type="text" class="form-control" placeholder="Enter Your Salary">
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="mb-3">
+                <label class="form-label">Excpected Salary</label>
+                <input asp-for="employeeDto.ExpcetedSalary" type="text" class="form-control" placeholder="Enter Your Excpected Salary">
+                <span asp-validation-for="employeeDto.Salary"></span>
+            </div>
+        </div>
+        <div class="col-6">
+            <label class="form-label">Chose Your Department</label>
+            <select class="form-select" asp-for="employeeDto.dept_id" asp-items='new SelectList(Model.departmentDtos,"id","Name")'>
+                <option selected>Open this select menu</option>
+            </select>
+        </div>
+        <div class="col-6">
+            <div class="mb-3">
+                <label class="form-label">hier Date</label>
+                <input asp-for="employeeDto.hierDate" type="datetime" class="form-control" placeholder="Enter Your Hier Date">
+                <span asp-validation-for="employeeDto.hierDate"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="formFile" class="form-label">Image</label>
+            <input type="file" asp-for="employeeDto.iformfile">
+        </div>
+
+        @if (Model.employeeDto!=null)
+        {
+            <div class="mb-3">
+                <input class="btn btn-primary" type="submit" value="Update" asp-action="UpdateEmp">
+            </div>
+            <img src="~/@Model.employeeDto.ImageName" style="width:100px">
+            @if (Model.employeeDto.ImageName != null)
+            {
+               <input type="hidden"  asp-for="employeeDto.ImageName">
+                
+            }
+        }
+        else
+        {
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Save" asp-action="SaveEmp">
+        </div>
+        }
+        
+       
+
+    </div>
+
+</form>
+
+  

@@ -1,0 +1,49 @@
+﻿@model VmTest
+
+@{
+    ViewData["Title"] = "NEwSearchByCountry";
+    Layout = "~/Views/Shared/_MneuPage.cshtml";
+}
+<form method="post">
+    <div class="row mt-3">
+        <div class="col-6">
+            <div class="col-6">
+                <div class="mb-3">
+                    <label class="form-label">Chose Your City</label>
+                    <select class="form-select"  asp-for="country.id" asp-items='new SelectList(Model.listcountryDtos,"id","Name")'>
+                        <option selected>Open this select menu</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3">
+                <input class="btn btn-primary" type="submit" value="Search Country" asp-action="SearchCountryByName">
+            </div>
+
+            <div class="mb-3">
+                <table class="table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                City Name
+                            </th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @foreach (CityDto item in Model.listcityDto)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Name
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</form>
+

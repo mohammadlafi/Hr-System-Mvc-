@@ -1,0 +1,60 @@
+﻿@model SignDto
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_MneuPage</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js" type="text/javascript"></script>
+    <script src="~/lib/jquery/dist/jquery.js" type="text/javascript"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js" type="text/javascript"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js" type="text/javascript"></script>
+</head>
+<body>
+
+<form method="post">
+    <div class="mb-3">
+        <h1>Sign in Account</h1>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input asp-for="Email" type="text" class="form-control" placeholder="Enter Your Email">
+                <span asp-validation-for="Email"></span>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input asp-for="Password" type="text" class="form-control" placeholder="Enter Your Password">
+                <span asp-validation-for="Password"></span>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" asp-for="Rememberme">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Remember Me
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="mb-3">
+                <span>@ViewData["result"]</span>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="mb-3">
+                <input type="submit" class="btn btn-primary" value="Login" asp-action="CheckPassword">
+            </div>
+        </div>
+        </div>
+        </form>
+        </body>
+        </html>
